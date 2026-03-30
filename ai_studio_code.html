@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Network Emulation (GNS3) - Weakypedia</title>
+    <style>
+        /* General Layout */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            display: flex;
+            background-color: #f6f6f6;
+            color: #202122;
+        }
+
+        /* Left Sidebar Styling */
+        .sidebar {
+            width: 250px;
+            background-color: #f6f6f6;
+            padding: 20px;
+            border-right: 1px solid #a2a9b1;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+
+        .sidebar-logo {
+            font-family: 'Linux Libertine', 'Georgia', serif;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: normal;
+        }
+
+        .contents-header {
+            font-size: 13px;
+            font-weight: bold;
+            color: #54595d;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li { margin-bottom: 8px; }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #0645ad;
+            font-size: 14px;
+        }
+
+        .sidebar ul li a:hover { text-decoration: underline; }
+
+        .nested { padding-left: 20px; margin-top: 5px; font-size: 13px; }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 290px;
+            background-color: #ffffff;
+            padding: 40px 60px;
+            max-width: 1000px;
+            min-height: 100vh;
+            border-left: 1px solid #a2a9b1;
+        }
+
+        .site-subtitle {
+            font-size: 13px;
+            color: #54595d;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: 'Linux Libertine', 'Georgia', serif;
+            font-size: 32px;
+            font-weight: normal;
+            margin-bottom: 5px;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #a2a9b1;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-family: 'Linux Libertine', 'Georgia', serif;
+            font-size: 24px;
+            font-weight: normal;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        h3 { font-family: sans-serif; font-size: 18px; margin-bottom: 5px; }
+
+        p { line-height: 1.6; font-size: 15px; text-align: justify; }
+
+        /* Infobox Styling */
+        .infobox {
+            float: right;
+            width: 320px;
+            border: 1px solid #a2a9b1;
+            background-color: #ffffff;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            padding: 1px;
+        }
+
+        .infobox-header {
+            background-color: #cedff2;
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .infobox-image-container {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .infobox-image-container img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .infobox-table {
+            width: 100%;
+            font-size: 12px;
+            border-collapse: collapse;
+        }
+
+        .infobox-table td {
+            padding: 8px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .label { font-weight: bold; width: 45%; }
+
+        /* Links */
+        .external-link {
+            color: #0645ad;
+            text-decoration: none;
+        }
+
+        .external-link:hover { text-decoration: underline; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-logo">Weakypedia</div>
+        <div class="contents-header">Contents</div>
+        <ul>
+            <li><a href="#abstract">Abstract</a></li>
+            <li><a href="#routing">1 Dynamic Routing</a>
+                <ul class="nested">
+                    <li><a href="#ospf">1.1 OSPF Multi-Area</a></li>
+                    <li><a href="#eigrp">1.2 Basic EIGRP</a></li>
+                </ul>
+            </li>
+            <li><a href="#security">2 Security & Management</a>
+                <ul class="nested">
+                    <li><a href="#fortigate">2.1 FortiGate VPN</a></li>
+                    <li><a href="#ssh-telnet">2.2 SSH & Telnet</a></li>
+                </ul>
+            </li>
+            <li><a href="#topology">3 Topology & Design</a>
+                <ul class="nested">
+                    <li><a href="#dualstar">3.1 Dual-Star Design</a></li>
+                    <li><a href="#internet">3.2 Multi-Subnet NAT</a></li>
+                </ul>
+            </li>
+            <li><a href="#availability">4 High Availability</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="site-subtitle">From Weakypedia, the free project encyclopedia</div>
+        <h1>Enterprise Network Emulation and Security Suite (GNS3)</h1>
+        <hr>
+
+        <p>
+            The <b>GNS3 Enterprise Suite</b> represents a comprehensive collection of virtualized network environments designed to simulate production-grade corporate infrastructures. By utilizing real <b>Cisco IOS</b> and <b>Fortinet</b> images, this suite demonstrates advanced implementation of routing protocols, security gateways, and management frameworks.
+        </p>
+
+        <!-- Infobox -->
+        <aside class="infobox">
+            <div class="infobox-header">GNS3 Lab Suite Specs</div>
+            <div class="infobox-image-container">
+                <img src="gns3.png" alt="GNS3 Enterprise Logo">
+                <p style="font-size: 11px; color: #555; margin-top: 5px;">Advanced Network Virtualization</p>
+            </div>
+            <table class="infobox-table">
+                <tr><td class="label">Primary Tool</td><td>GNS3 v2.2+</td></tr>
+                <tr><td class="label">OS Images</td><td>Cisco IOU/IOS, FortiOS</td></tr>
+                <tr><td class="label">Routing</td><td>OSPF, EIGRP, Static</td></tr>
+                <tr><td class="label">Redundancy</td><td>VRRP (First Hop)</td></tr>
+                <tr><td class="label">Remote Mgmt</td><td>SSH v2, Telnet</td></tr>
+            </table>
+        </aside>
+
+        <h2 id="abstract">Abstract</h2>
+        <p>
+            The primary objective of these laboratories was to design and configure scalable, secure, and redundant networks. Each module addresses specific enterprise requirements, from secure remote management using encrypted protocols to implementing site-to-site VPN tunnels for encrypted data transit across untrusted networks.
+        </p>
+
+        <h2 id="routing">1. Dynamic Routing Implementation</h2>
+        <p>Dynamic routing protocols form the backbone of these labs, ensuring optimized path selection and loop prevention.</p>
+        
+        <h3 id="ospf">1.1 OSPF Multi-Area</h3>
+        <p>Configuration of Area 0 (Backbone) and subsidiary areas to reduce SPF processing. <a href="https://github.com/Vishalrsjce/OSPF_Lab_Manual" class="external-link">[View Lab Manual]</a></p>
+
+        <h3 id="eigrp">1.2 Basic EIGRP</h3>
+        <p>Implementation of the Diffusing Update Algorithm (DUAL) for rapid convergence. <a href="https://github.com/Vishalrsjce/Basic-EIGRP-Configuration" class="external-link">[View Configuration]</a></p>
+
+        <h2 id="security">2. Security & Remote Management</h2>
+        <p>Securing the control plane and data plane is critical for maintaining enterprise confidentiality.</p>
+
+        <h3 id="fortigate">2.1 FortiGate VPN Implementation</h3>
+        <p>Implementation of site-to-site VPN tunnels using FortiOS 7.x to secure branch-to-HQ communication. <a href="https://github.com/Vishalrsjce/FortiGate-Network-Security-VPN-Implementation-Guide" class="external-link">[View VPN Guide]</a></p>
+
+        <h3 id="ssh-telnet">2.2 SSH & Telnet Labs</h3>
+        <p>Comparing encrypted vs. cleartext management. 
+            <a href="https://github.com/Vishalrsjce/GNS3-SSH-Configuration-Lab" class="external-link">[SSH Lab]</a> | 
+            <a href="https://github.com/Vishalrsjce/GNS3-Telnet-Lab-Report" class="external-link">[Telnet Report]</a>
+        </p>
+
+        <h2 id="topology">3. Network Topology & Design</h2>
+        
+        <h3 id="dualstar">3.1 Dual-Star Topology with Routing</h3>
+        <p>A resilient design featuring redundant core switches and multi-homed routing paths. <a href="https://github.com/Vishalrsjce/GNS3-Lab-Documentation-Dual-Star-Topology-with-Routing" class="external-link">[View Documentation]</a></p>
+
+        <h3 id="internet">3.2 Multi-Subnet Internet Access</h3>
+        <p>Configuration of NAT (Network Address Translation) and PAT to allow multiple internal subnets to access the public internet. <a href="https://github.com/Vishalrsjce/Multi-Subnet-Network-with-Internet-Access" class="external-link">[View Topology]</a></p>
+
+        <h2 id="availability">4. High Availability (Redundancy)</h2>
+        <p>
+            The <b>VRRP (Virtual Router Redundancy Protocol)</b> lab ensures that the gateway remains accessible even during hardware failure. By sharing a virtual IP address between multiple routers, the network achieves near-zero downtime. 
+            <a href="https://github.com/Vishalrsjce/VRRP-Network-Redundancy-Using-GNS-3" class="external-link">[View VRRP Lab]</a>
+        </p>
+
+        <!-- Final Output Image -->
+        <div style="text-align: center; margin-top: 40px; border: 1px solid #ccc; padding: 15px; background: #fdfdfd;">
+            <img src="GNS3_Final_Topology.png" style="width: 100%; max-width: 750px;" alt="GNS3 Detailed Lab Output">
+            <p style="font-style: italic; font-size: 13px; color: #54595d; margin-top: 10px;">Fig 2.1: Integrated GNS3 environment showing OSPF routing and FortiGate security node deployment.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
